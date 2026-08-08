@@ -1,0 +1,23 @@
+# Only takes effect on Apache hosting (typical for cPanel/shared hosting).
+# Harmless if the host runs something else (Nginx, static-only, etc.) —
+# those platforms simply ignore this file; the redirect/header would need
+# to be configured in their own dashboard/config instead.
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Force https://www.grapcadd.in (fixes the "duplicate content: www vs
+  # non-www" + "canonical points to a different domain" issues flagged
+  # by the SEO audit)
+  RewriteCond %{HTTP_HOST} ^grapcadd\.in$ [NC]
+  RewriteRule ^(.*)$ https://www.grapcadd.in/$1 [R=301,L]
+
+  RewriteCond %{HTTPS} off
+  RewriteRule ^(.*)$ https://www.grapcadd.in/$1 [R=301,L]
+</IfModule>
+
+# Send charset in the HTTP header (the audit flagged it as missing there,
+# even though the HTML <meta charset> tag was already correct)
+<IfModule mod_headers.c>
+  AddDefaultCharset UTF-8
+</IfModule>

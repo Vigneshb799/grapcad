@@ -360,10 +360,17 @@ section {
 ==============================*/
 
 .page-hero {
-  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  background: linear-gradient(120deg, var(--primary), var(--primary-dark), #123a91, var(--primary));
+  background-size: 300% 300%;
+  animation: heroGradientShift 14s ease infinite;
   padding: 140px 0 80px;
   text-align: center;
   color: #FFFFFF;
+}
+
+@keyframes heroGradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
 }
 
 .page-hero h1 {
@@ -514,7 +521,7 @@ section {
 
 }
 
-.stat-card h2 {
+.stat-card .stat-number {
 
   color: var(--primary);
 
@@ -984,7 +991,9 @@ section {
 
 }
 
-.testimonial-card h4 {
+.testimonial-card .star-rating {
+
+  display: block;
 
   color: #FFD54F;
 
@@ -1771,7 +1780,7 @@ img:hover {
   border-color: var(--primary);
 }
 
-.about-stat-card h2 {
+.about-stat-card .stat-number {
   color: var(--primary);
   font-size: 48px;
   margin-bottom: 10px;
@@ -2150,23 +2159,10 @@ img:hover {
   transform: translateY(-10px);
 }
 
-.section-title {
-  font-size: 46px;
-  margin-bottom: 20px;
-  text-align: center;
-}
-
-.section-subtitle {
-  color: #9ca3af;
-  max-width: 700px;
-  margin: auto;
-  margin-bottom: 60px;
-  line-height: 1.8;
-}
-
 .about img,
 .work-card img {
   transition: .5s;
+  max-height: 500px;
 }
 
 .about img:hover,
@@ -2686,6 +2682,20 @@ img:hover {
   transition: transform .15s ease-out;
 }
 
+/* Same fast-tilt treatment for the card types on the other pages
+   (about, courses, work, blog) */
+.mission-card.tilt-card,
+.feature-box.tilt-card,
+.about-stat-card.tilt-card,
+.why-card.tilt-card,
+.stat-card.tilt-card {
+  transition: transform .15s ease-out, border-color .3s ease;
+}
+
+.blog-card.tilt-card {
+  transition: transform .15s ease-out, border-color .3s ease, box-shadow .3s ease;
+}
+
 /* Cursor-tracked glare sweep — only renders on real elements (not <img>,
    which browsers don't allow generated content on; harmless no-op there) */
 .tilt-card::after {
@@ -2817,7 +2827,9 @@ img:hover {
 }
 
 /* Gradient accent text (e.g. the "Draft." keyword in the hero) */
-.gradient-text {
+/* .hero h1 span (specificity 0,1,2,0) would otherwise beat this single
+   class and override color:transparent, hiding the gradient entirely */
+.hero h1 span.gradient-text {
   background: linear-gradient(135deg, var(--primary), #59dcff);
   -webkit-background-clip: text;
   background-clip: text;
@@ -2849,5 +2861,8 @@ img:hover {
   .gallery-grid img.tilt-card,
   .magnetic-btn::before {
     transition: none;
+  }
+  .page-hero {
+    animation: none;
   }
 }

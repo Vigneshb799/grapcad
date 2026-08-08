@@ -110,7 +110,7 @@
               <span class="google-review-time">${escapeHtml(r.relative_time_description)}</span>
             </div>
           </div>
-          <h4>${starString(r.rating)}</h4>
+          <div class="star-rating" aria-label="${r.rating} out of 5 stars">${starString(r.rating)}</div>
           <p>${escapeHtml(r.text)}</p>
         </div>`
       )
