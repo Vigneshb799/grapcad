@@ -1,7 +1,7 @@
 // ==============================================================
 // LIVE GOOGLE REVIEWS
 // ==============================================================
-// Pulls live reviews from the GRAPCAD Google Business Profile using
+// Pulls live reviews from the GRAPCADD Google Business Profile using
 // the Google Maps JavaScript API (Places library) and renders them
 // into #google-reviews-list on the page. Fetched fresh on every page
 // load (not cached/stored), per Google Places API policy.
@@ -11,8 +11,8 @@
 //   2. APIs & Services > Library: enable "Maps JavaScript API" and "Places API".
 //   3. APIs & Services > Credentials: create an API key.
 //   4. Restrict the key: Application restrictions > HTTP referrers > add
-//        https://grapcad.in/*
-//      (and https://www.grapcad.in/* if you use the www subdomain).
+//        https://grapcadd.in/*
+//      (and https://www.grapcadd.in/* if you use the www subdomain).
 //      API restrictions > limit to "Maps JavaScript API" + "Places API".
 //   5. Enable billing on the project (required by Google even for free-tier
 //      usage; Google gives ~$200/month free credit, comfortably enough
@@ -66,7 +66,7 @@
     script.textContent = JSON.stringify({
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
-      "@id": "https://grapcad.in/#organization",
+      "@id": "https://grapcadd.in/#organization",
       "aggregateRating": {
         "@type": "AggregateRating",
         "ratingValue": place.rating,

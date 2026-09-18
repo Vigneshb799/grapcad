@@ -255,7 +255,7 @@ if (testimonialCards.length > 0) {
 
       testimonialCards[current].style.transform = "scale(1.05)";
 
-      testimonialCards[current].style.borderColor = "#29C9FF";
+      testimonialCards[current].style.borderColor = "#FF7043";
 
       current++;
 
